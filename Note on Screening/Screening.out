@@ -1,6 +1,8 @@
 \BOOKMARK [1][-]{section.1}{1 Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{2 SVM: non-separable case}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{2.1 Without Kernel}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{2.2 With Kernel}{section.2}% 4
-\BOOKMARK [1][-]{section.3}{3 Methods}{}% 5
-\BOOKMARK [1][-]{section.4}{4 Results and Discussion}{}% 6
+\BOOKMARK [2][-]{subsection.1.1}{1.1 Margin}{section.1}% 2
+\BOOKMARK [1][-]{section.2}{2 SVM: non-separable case}{}% 3
+\BOOKMARK [2][-]{subsection.2.1}{2.1 Formation I}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.2}{2.2 Formulation II}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{2.3 With Kernel}{section.2}% 6
+\BOOKMARK [1][-]{section.3}{3 Methods}{}% 7
+\BOOKMARK [1][-]{section.4}{4 Results and Discussion}{}% 8

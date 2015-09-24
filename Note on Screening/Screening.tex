@@ -93,6 +93,7 @@ BCOR5mm, % Binding correction
 \newcommand{\zB}{\mathbf{z}}
 \newcommand{\AM}{\mathcal{A}}
 \newcommand{\DM}{\mathcal{D}}
+\newcommand{\EM}{\mathcal{E}}
 \newcommand{\FM}{\mathcal{F}}
 \newcommand{\PM}{\mathcal{P}}
 \newcommand{\TM}{\mathcal{T}}
@@ -221,30 +222,129 @@ BCOR5mm, % Binding correction
 My current plan is to write a survey about the screening methods used in identifying non-support vector in solving Support Vector Machine (SVM) problem.
 Such methods differ from the screening strategy for lasso in that, in SVM the data points are discarded while in lasso the features are discarded.
 
+\subsection{Margin}
+Given a hyperplane $\HM = \{\xB \in \RBB^d: \wB\cdot\xB + b = 0\}$, the distance from a point $\zB \in \RBB^d$ to $\HM$ is $\DB(\zB, \HM) = \frac{\wB\cdot\zB+b}{\|\wB\|}$.
+If we know whether the point is above or below the hyperplane by the sign variable $y \in \{-1, +1\}$, we define the margin to be $\MB(\zB, \HM) = y\frac{\wB\cdot\zB+b}{\|\wB\|}$
+
+Now suppose we are given a dataset $\XM = \{y_i, \xB_i\}_{i=1}^m$, the margin of $\XM$ to $\HM$ is defined as
+\begin{equation*}
+	\MB(\XM, \HM) = \min_{\zB \in \XM} \MB(\zB, \HM).
+\end{equation*}
+Given that the dataset $\XM$ is seperable, SVM aims to seek a hyperplane $\HM^*$ that gives the largest margin of $\XM$ to $\HM^*$. Such goal can be formalized as 
+\begin{equation*}
+	\begin{aligned}
+		\max_\HM & \quad \rho \\
+		s.t. & \quad  \MB(\zB, \HM) \geq \rho, \forall \zB \in \XM
+	\end{aligned}
+\end{equation*}
+Clearly we can scale $\wB$ and $b$ such that $\min_{\zB\in\XM} |\zB\cdot\wB+b|= 1$, thus the above formulation is equivalent to 
+\begin{equation}
+	\begin{aligned}
+		\min & \quad \|\wB\| \\
+		s.t. & \quad y_i(\xB_i\cdot\wB+b) \geq 1, i = 1, \ldots, m		
+	\end{aligned}
+\end{equation}
 \section{SVM: non-separable case}
 We are interested in solving SVM problem where there is no hyperplane that can correctly classify all the data points.
-\subsection{Without Kernel}
+There are several formulations of SVM whose primal and dual problems, KKT conditions, and corresponding screening properties will be discussed one by one.
+\subsection{Formation I}
 The primal formulation of such problem is 
 \begin{equation}
 	\begin{aligned}
-		\min_{\wB, b, \xiB} & \quad \frac{1}{2}\|\wB\|_2^2+C\sum_{i=1}^{m}\xi_i  \\
+		\min_{\wB, b, \xiB} & \quad \frac{1}{2}\|\wB\|_2^2+C\sum_{i=1}^{m}\xi_i^\beta  \\
 		s.t. & \quad y_i(\wB\cdot\xB_i+b)\geq 1- \xi_i \cap \xi_i \geq 0, i\in[m].
 	\end{aligned}
-	\tag{P}
-	\label{eqn: SVM non-separable P}
+	\tag{$P^I_\beta$}
+	\label{eqn: SVM non-separable P I}
 \end{equation}
+where $\beta = 1$ or $2$, corresponding to $l_1$ and $l_2$ SVM variants.
 
-Using the standard derivation, we have the following dual formulation of (\ref{eqn: SVM non-separable P})
+It is clear that when $\beta = 1$, the $l_1$-SVM problem is equivalent to the following problem.
 \begin{equation}
+	\min_{\wB, b} \frac{1}{2}\|\wB\|^2+C\sum_{i=1}^{m} [1-y_i(\wB\cdot\xB_i+b)]_+
+\end{equation}
+Using the standard derivation, we have the following dual formulation of (\ref{eqn: SVM non-separable P I}) when $\beta = 1$
+\begin{equation*}
 	\begin{aligned}
-		\min_{\alphaB} & \quad \|\alphaB\|_1-\frac{1}{2}\alphaB^\top\QB\alphaB \\
+		\max_{\alphaB} & \quad \|\alphaB\|_1-\frac{1}{2}\alphaB^\top\QB\alphaB \\
 		s.t. & \quad 0\leq \alpha_i \leq C \cap \alphaB\cdot\yB = 0, i\in [m],
 	\end{aligned}
-	\tag{D}
-	\label{eqn: SVM non-separable D}
-\end{equation}
+	\tag{$D^I_1$}
+	\label{eqn: SVM non-separable D I}
+\end{equation*}
 where $\QB_{i,j} = y_iy_j(\xB_i\cdot\xB_j)$.
+Given a primal solution $\wB^*, \xiB^*, b^*$ and a dual solution $\alphaB^*$, the KKT condition states that 
+\begin{enumerate}
+	\item $\xi^*_i \geq 0, i = 1, \ldots, m$.
+	\item $\xi^*_i \geq 1 - y_i(\wB^*\cdot\xB_i+b^*), i = 1, \ldots, m$
+	\item $0 \leq \alpha^*_i \leq C, i = 1, \ldots, m$
+	\item $\alpha^*_i (1 - y_i(\wB^*\cdot\xB_i+b^*) - \xi^*_i) =0, i = 1, \ldots, m$
+	\item $(C - \alpha^*_i) \xi^*_i = 0, i = 1, \ldots, m$
+	\item $\wB^* = \AB \alphaB^*$
+\end{enumerate}
+where $\AB = [\cdots y_i\xB_i \cdots]_i$.
 
+If $1 - y_i(\wB^*\cdot\xB_i+b^*) < 0$ then $(1 - y_i(\wB^*\cdot\xB_i+b^*) - \xi^*_i) < 0$, we have $\alpha^*_i = 0$ by the complementary slackness.
+Similarly, if $1 - y_i(\wB^*\cdot\xB_i+b^*) > 0$, we have $\alpha^*_i = C$.
+By categorizing the $m$ training instances into three sets
+\begin{itemize}
+	\item $\RM := \{i\in [m] | y_i(\wB^*\cdot\xB_i+b) > 1 \}$
+	\item $\EM := \{i\in [m] | y_i(\wB^*\cdot\xB_i+b) = 1 \}$
+	\item $\LM := \{i\in [m] | y_i(\wB^*\cdot\xB_i+b) < 1 \}$
+\end{itemize}
+we summarize such property by that 
+\begin{itemize}
+	\item $i \in \RM \rightarrow \alpha_i = 0$
+	\item $i \in \EM \rightarrow \alpha_i \in [0, C]$
+	\item $i \in \LM \rightarrow \alpha_i = C$
+\end{itemize}
+
+\subsection{Formulation II}
+
+Another way to write SVM is by 
+\begin{equation}
+\begin{aligned}
+\min_{\wB, b, \xiB} & \quad \frac{1}{2}\|\wB\|_2^2  \\
+s.t. & \quad y_i(\wB\cdot\xB_i+b)\geq 1- \xi_i \cap \xi_i \geq 0, i\in[m] \\
+& \quad \sum_{i=1}^m \xi_i^\beta \leq s,
+\end{aligned}
+\tag{$P^{II}_\beta$}
+\label{eqn: SVM non-separable P II}
+\end{equation}
+which is clearly equivalent to the following problem when we take $\beta  = 1$
+\begin{equation}
+	\begin{aligned}
+		\min_{\wB, b} & \quad \frac{1}{2}\|\wB\|^2 \\
+		s.t. & \quad \sum_{i=1}^m [1-y_i(\wB\cdot\xB_i+b)]_+ \leq s.
+ 	\end{aligned}
+\end{equation}
+where $[a]_+ = \max \{a, 0\}$ denotes the hinge loss.
+
+Using the standard derivation, we have the following dual formulation of (\ref{eqn: SVM non-separable P II}) when $\beta = 1$
+\begin{equation*}
+	\begin{aligned}
+		\max_{\alphaB, C} & \quad \|\alphaB\|_1-\frac{1}{2}\alphaB^\top\QB\alphaB - Cs\\
+		s.t. & \quad 0\leq \alpha_i \leq C \cap \alphaB\cdot\yB = 0, i\in [m],
+	\end{aligned}
+\tag{$D^{II}_1$}
+\label{eqn: SVM non-separable D II}
+\end{equation*}
+
+Given a primal solution $\wB^*, \xiB^*, b^*$ and a dual solution $\alphaB^*, C^*$, the KKT condition states that 
+\begin{enumerate}
+	\item $\xi^*_i \geq 0, i = 1, \ldots, m$.
+	\item $\xi^*_i \geq 1 - y_i(\wB^*\cdot\xB_i+b^*), i = 1, \ldots, m$
+	\item $\sum_{i=1}^m \xi^*_i \leq s$
+	\item $0 \leq \alpha^*_i \leq C^*, i = 1, \ldots, m$
+	\item $C^* \geq 0$
+	\item $(\sum_{i=1}^m \xi^*_i - s) C^* = 0$
+	\item $\alpha^*_i (1 - y_i(\wB^*\cdot\xB_i+b^*) - \xi^*_i) =0, i = 1, \ldots, m$
+	\item $(C^* - \alpha^*_i) \xi^*_i = 0, i = 1, \ldots, m$
+	\item $\wB^* = \AB \alphaB^*$
+\end{enumerate}
+where $\AB = [\cdots y_i\xB_i \cdots]_i$.
+
+I have not yet figure out the screening properties in this formulation.
 \subsection{With Kernel}
 %----------------------------------------------------------------------------------------
 %	Methods
