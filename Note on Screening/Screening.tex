@@ -427,9 +427,75 @@ Support function for a ball $\BB(\cB, r) = \{\xB ~|~ \|\xB-\cB\|\leq r\}$
 \begin{equation}
 	\HB_{\BB(\cB, r)}(\aB) = \sup_{\xB \in \BB(\cB, r)} \aB\cdot\xB = \aB\cdot\cB + r
 \end{equation}
+
+
+%----------------------------------------------------------------------------------------
+%	REAPER
+%----------------------------------------------------------------------------------------
+
+\section{REAPER}
+Principal Component Analysis can be formalized as 
+\begin{equation}
+	\begin{aligned}
+		\min_{\Pi} & \quad \sum_{\xB \in \XM} \|\xB - \Pi\xB\|^2 \\
+		s.t. & \quad \Pi \mathrm{is~an~orthoprojector} \cap \mathrm{tr} \Pi = d
+	\end{aligned}
+	\label{eqn: square residual PCA}
+\end{equation}
+which can be readily solved by Singluar Value Decomposition (SVD) in a closed form.
+However, such formulation is not robust to outliers. One alternative is to replace square residual with residual, that is 
+\begin{equation}
+	\begin{aligned}
+		\min_{\Pi} & \quad \sum_{\xB \in \XM} \|\xB - \Pi\xB\| \\
+		s.t. & \quad \Pi \mathrm{is~an~orthoprojector} \cap \mathrm{tr} \Pi = d
+	\end{aligned}
+	\label{eqn: residual PCA}
+\end{equation}
+Unfortunately, the constrain is non-convex which makes the problem difficult to solve.
+
+Convex Relaxation is often utilized so that efficient solvers can be used. In REAPER, the constrain is relaxed to its convex hull, i.e.
+\begin{equation}
+	\begin{aligned}
+		\min_{\PB} & \quad \sum_{\xB \in \XM} \|\xB - \PB\xB\| \\
+		s.t. & \quad 0 \preccurlyeq \PB \preccurlyeq \IB  \cap \mathrm{tr} \PB = d
+	\end{aligned}
+	\label{eqn: REAPER I}
+\end{equation}
+Clearly, the solution $\PB^*$ to \ref{eqn: REAPER I} may not be feasible in the original problem \ref{eqn: residual PCA}, REAPER outputs the solution to the following problem 
+\begin{equation}
+	\begin{aligned}
+		\min_{\Pi} & \quad \|\PB^* - \Pi\|_{S_1} \\
+		s.t. & \quad \Pi \mathrm{is~an~orthoprojector} \cap \mathrm{tr} \Pi = d
+	\end{aligned}
+\end{equation}
+
+\subsection{Parameters of REAPER}
+Let $\MB \subset \RBB^D$ be a subspace, let $\Pi$ and $\Pi^\bot$ be the corresponding orthoprojectors to $\MB$ and $\MB^\bot$. Define the following parameters.
+
+\emph{Permeance Statistic} $\PM(\MB)$:
+\begin{equation}
+	\PM(\MB) := \inf_{\uB \in \MB, \|\uB\|=1} \sum_{\xB\in\XM_{in}} |<\uB, \Pi \xB>|
+\end{equation}
+\emph{Total Inlier Residual} $\RM(\MB)$:
+\begin{equation}
+	\RM(\MB) := \sum_{\xB \in \XM_{in}} \|\Pi^\bot \xB\|.
+\end{equation}
+\emph{Alignment Statistic} $\AM(\MB)$:
+\begin{equation}
+	\AM(\MB) := \|\XB_{out}\|\cdot \|\SM(\Pi^\bot \XB_{out})\|.
+\end{equation}
+where $\SM(\AB)$ spherizes the columns of the matrix $\AB$.
+and the \emph{Stability Statistic} $\Phi(\MB)$:
+\begin{equation}
+	\Phi(\MB) := \frac{\PM(\MB)}{4\sqrt{dim(\MB)}} - \AM(\MB).
+\end{equation}
+
+
 %----------------------------------------------------------------------------------------
 %	RESULTS AND DISCUSSION
 %----------------------------------------------------------------------------------------
+
+
 
 \section{Results and Discussion}
 

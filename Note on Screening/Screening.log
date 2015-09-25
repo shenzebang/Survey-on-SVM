@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.23)  24 SEP 2015 23:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.9.23)  25 SEP 2015 13:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1059,54 +1059,55 @@ ifier (name{equation.2.3}) has been already used, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.331 \end{equation*}
-                     ] [4] (./Screening.bbl
+                     ] [4] [5] (./Screening.bbl
 
 LaTeX Warning: Empty `thebibliography' environment or \BreakBibliography
                before end of `thebibliography' environment on input line 3.
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 448.
- [5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 448.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 514.
+ [6]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 514.
  (./Screening.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 448.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 448.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 514.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 514.
 Package rerunfilecheck Info: File `Screening.out' has not changed.
-(rerunfilecheck)             Checksum: 0D7CA8A131965B9207D7FE3EFD2E5B1B;643.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 448.
+(rerunfilecheck)             Checksum: 4DB88EE626CFD888BD10AFE20C83BF5F;761.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 514.
  ) 
 Here is how much of TeX's memory you used:
- 13620 strings out of 493089
- 210738 string characters out of 6134842
+ 13645 strings out of 493089
+ 211037 string characters out of 6134842
  493573 words of memory out of 5000000
- 16741 multiletter control sequences out of 15000+600000
- 103143 words of font info for 157 fonts, out of 8000000 for 9000
+ 16748 multiletter control sequences out of 15000+600000
+ 107121 words of font info for 165 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  52i,14n,52p,356b,388s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
 exlive/2015/texmf-dist/fonts/enc/dvips/iwona/ec-iwona-sc.enc}{/usr/local/texliv
 e/2015/texmf-dist/fonts/enc/dvips/iwona/ec-iwona.enc}</usr/local/texlive/2015/t
-exmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texm
-f-dist/fonts/type1/public/amsfonts/euler/euex10.pfb></usr/local/texlive/2015/te
-xmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2015/
-texmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2015
-/texmf-dist/fonts/type1/public/amsfonts/euler/eurb10.pfb></usr/local/texlive/20
-15/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/local/texlive
-/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/local/texli
-ve/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eusm7.pfb></usr/local/texl
-ive/2015/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/
-2015/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2015/tex
-mf-dist/fonts/type1/nowacki/iwona/iwonar.pfb></usr/local/texlive/2015/texmf-dis
-t/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf
--dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/f
-onts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
-pe1/urw/palatino/uplri8a.pfb>
-Output written on Screening.pdf (5 pages, 146051 bytes).
+exmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2015/texmf
+-dist/fonts/type1/public/amsfonts/euler/euex10.pfb></usr/local/texlive/2015/tex
+mf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2015/t
+exmf-dist/fonts/type1/public/amsfonts/euler/eufm7.pfb></usr/local/texlive/2015/
+texmf-dist/fonts/type1/public/amsfonts/euler/eurb10.pfb></usr/local/texlive/201
+5/texmf-dist/fonts/type1/public/amsfonts/euler/eurm10.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/amsfonts/euler/eurm7.pfb></usr/local/texlive/
+2015/texmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/local/texliv
+e/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eusm7.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/public/mathpazo/fplmbb.pfb></usr/local/texlive/2
+015/texmf-dist/fonts/type1/public/fpl/fplrc8a.pfb></usr/local/texlive/2015/texm
+f-dist/fonts/type1/nowacki/iwona/iwonar.pfb></usr/local/texlive/2015/texmf-dist
+/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2015/texmf-
+dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/local/texlive/2015/texmf-dist/fo
+nts/type1/urw/palatino/uplr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/typ
+e1/urw/palatino/uplri8a.pfb>
+Output written on Screening.pdf (6 pages, 163911 bytes).
 PDF statistics:
- 202 PDF objects out of 1000 (max. 8388607)
- 176 compressed objects within 2 object streams
- 46 named destinations out of 1000 (max. 500000)
- 30809 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 233 PDF objects out of 1000 (max. 8388607)
+ 204 compressed objects within 3 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 31337 words of extra memory for PDF output out of 35830 (max. 10000000)
 
