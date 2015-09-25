@@ -346,87 +346,13 @@ where $\AB = [\cdots y_i\xB_i \cdots]_i$.
 
 I have not yet figure out the screening properties in this formulation.
 \subsection{With Kernel}
-
-%----------------------------------------------------------------------------------------
-%	Lasso
-%----------------------------------------------------------------------------------------
-
-\section{Lasso}
-\subsection{Formulation I}
-Primal:
-\begin{equation}
-	\begin{aligned}
-		\min_\xB & \quad \frac{1}{2}\|\AB\xB - \bB\|^2 \\
-		s.t. & \quad \|\xB\|_1 \leq t
-	\end{aligned}
-\end{equation}
-which is equivalent to 
-\begin{equation}
-	\begin{aligned}
-		\min_\xB & \quad \frac{1}{2}\|\zB\|^2 \\
-		s.t. & \quad \|\xB\|_1 \leq t \cap \AB\xB - \bB = \zB
-	\end{aligned}
-	\label{eqn: Lasso constrain auxillary variable I}
-\end{equation}
-
-Dual of \ref{eqn: Lasso constrain auxillary variable I}:
-\begin{equation}
-	\begin{aligned}
-		\max_{\thetaB, \lambda} & \quad \frac{\|\bB\|^2}{2} - \frac{\|\thetaB - \bB\|^2}{2} - \lambda t \\
-		s.t. & \quad \|\AB^\top \theta\|_\infty \leq \lambda
-	\end{aligned}
-\end{equation}
-
-Given a primal solution $\xB^*, \zB^*$ and dual solution $\thetaB^*, \lambda^*$ KKT condition states:
-\begin{itemize}
-	\item $\|\xB^*\|_1 \leq t \cap \AB\xB^* - \bB^* = \zB^*$
-	\item $\lambda \geq 0$
-	\item $\zB^* + \thetaB^* = 0$
-	\item $\frac{\AB^\top\thetaB^*}{\lambda^*} \in \partial \|\xB^*\|_1$
-	\item $\lambda (\|\xB^*\|_1 - t) = 0$
-\end{itemize}
-From the four$^{th}$ property, we have that if $|\AB_i \cdot \thetaB^*| < \lambda^*, \xB_i^* = 0$.
-
-\subsection{Formulation II}
-Primal:
-\begin{equation}
-	\min_\xB  \quad \frac{1}{2}\|\AB\xB - \bB\|^2 + \lambda \|\xB\|_1
-\end{equation}
-which is equivalent to 
-\begin{equation}
-\begin{aligned}
-\min_\xB & \quad \frac{1}{2}\|\zB\|^2 + \lambda \|\xB\|_1 \\
-s.t. & \quad  \AB\xB - \bB = \zB
-\end{aligned}
-\label{eqn: Lasso constrain auxillary variable II}
-\end{equation}
-
-Dual of \ref{eqn: Lasso constrain auxillary variable II}:
-\begin{equation}
-\begin{aligned}
-\max_{\thetaB} & \quad \frac{\|\bB\|^2}{2} - \frac{\|\thetaB - \bB\|^2}{2} \\
-s.t. & \quad \|\AB^\top \theta\|_\infty \leq \lambda
-\end{aligned}
-\end{equation}
-
-Given a primal solution $\xB^*, \zB^*$ and dual solution $\thetaB^*$ KKT condition states:
-\begin{itemize}
-	\item $\AB\xB^* - \bB^* = \zB^*$
-	\item $\frac{\AB^\top\thetaB^*}{\lambda} \in \partial \|\xB^*\|_1$
-\end{itemize}
-From the four$^{th}$ property, we have that if $|\AB_i \cdot \thetaB^*| < \lambda, \xB_i^* = 0$.
-
-
 %----------------------------------------------------------------------------------------
 %	Methods
 %----------------------------------------------------------------------------------------
 
 \section{Methods}
 
-Support function for a ball $\BB(\cB, r) = \{\xB ~|~ \|\xB-\cB\|\leq r\}$
-\begin{equation}
-	\HB_{\BB(\cB, r)}(\aB) = \sup_{\xB \in \BB(\cB, r)} \aB\cdot\xB = \aB\cdot\cB + r
-\end{equation}
+
 %----------------------------------------------------------------------------------------
 %	RESULTS AND DISCUSSION
 %----------------------------------------------------------------------------------------
